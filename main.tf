@@ -15,14 +15,6 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-// Create and associate Elastic IP to web host
-resource "aws_eip" "web_eip" {
-  
-  instance = aws_instance.web.id
-  vpc      = true
-  
-}
-
 resource "aws_key_pair" "webkey" {
   key_name   = "web-key"
   public_key = var.web_pkey
@@ -38,7 +30,7 @@ resource "aws_instance" "web" {
 
   user_data = <<-EOF
                #!/bin/bash
-               echo "cwiczonko z terraforma \n Chaosgears" > index.html
+               echo "cwiczonko z terraforma <br> dla Chaosgears" > index.html
                nohup busybox httpd -f -p 80 &
                EOF
 
