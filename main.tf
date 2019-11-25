@@ -36,7 +36,7 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = var.vpc_security_group_ids
   key_name               = aws_key_pair.webkey.key_name
 
-  user_datta = <<-EOF
+  user_data = <<-EOF
                #!/bin/bash
                echo "cwiczonko z terraforma \n Chaosgears" > index.html
                nohup busybox httpd -f -p 80 &
